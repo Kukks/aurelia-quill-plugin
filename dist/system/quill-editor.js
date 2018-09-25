@@ -90,14 +90,14 @@ System.register(['quill', 'aurelia-binding', 'aurelia-dependency-injection', 'au
                 QuillEditor.prototype.attached = function attached() {
                     this.editor = new Quill(this.quillEditor, this.options);
                     if (this.value) {
-                        this.editor.root.innerHTML = this.value;
+                        this.editor.dangerouslyPasteHTML(this.value);
                     }
 
                     this.editor.on('text-change', this.onTextChanged);
                 };
 
                 QuillEditor.prototype.valueChanged = function valueChanged(value) {
-                    if (this.editor.root.innerHTML !== value) this.editor.root.innerHTML = value;
+                    if (this.editor.root.innerHTML !== value) this.editor.dangerouslyPasteHTML(value);
                 };
 
                 QuillEditor.prototype.detached = function detached() {
